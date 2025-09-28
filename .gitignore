@@ -1,0 +1,16 @@
+.vs/
+.idea/
+.accdb
+target/
+packages/
+bin/
+obj/
+*.obj
+*.exe
+
+
+# media
+*.txt
+*.pdf
+*.png
+*.drawio

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.app.NonPlayerCharacter" table='"NonPlayerCharacters"'>
+        <meta attribute="class-description">
+            This class contains NPC's details.
+        </meta>
+        <id name="id" type="int" column="id" access="field">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="string" access="field"/>
+        <property name="health" column="health" type="int" access="field"/>
+        <property name="role" column="role" type="string" access="field"/>
+        <property name="attitude" column="attitude" type="int" access="field"/>
+    </class>
+</hibernate-mapping>

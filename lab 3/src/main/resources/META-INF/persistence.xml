@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0"-->
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+    <persistence-unit name="characters" transaction-type="RESOURCE_LOCAL">
+        <!--provider>jakarta.persistence.spi.PersistenceProvider</provider-->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!--provider>org.hibernate.ejb.HibernatePersistence</provider-->
+        <properties>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:4501/characters"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+            <property name="jakarta.persistence.jdbc.password" value="popbob"/>
+            <!--property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:4501/characters"/>
+            <property name="javax.persistence.jdbc.driver_class" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="postgres"/>
+            <property name="javax.persistence.jdbc.password" value="popbob"/-->
+        </properties>
+    </persistence-unit>
+
+</persistence>
