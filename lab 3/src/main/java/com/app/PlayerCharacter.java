@@ -1,7 +1,6 @@
 package com.app;
 
 import com.app.Character;
-import com.app.Level;
 import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
@@ -10,7 +9,8 @@ import lombok.*;
 
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Setter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "\"PlayerCharacters\"")
 public class PlayerCharacter extends Character {
@@ -20,21 +20,20 @@ public class PlayerCharacter extends Character {
 	@Column(name = "experience")
 	private int experience = 0;
 
-	@OneToMany(mappedBy = "playerCharacter", fetch = FetchType.EAGER)
-	private List<Level> levels = new ArrayList<Level>();
-
 	private static int EXP_COEFF = 1000;
 	private static int curTime = 0;
 
 
-	public PlayerCharacter(String name, int health) {
-		super(name, health);
+	public PlayerCharacter(String name, int health, Game game) {
+		super(name, health, game);
+		//this.game = game;
 	}
 
-	public PlayerCharacter(String name, int health, int level, int experience) {
-		super(name, health);
+	public PlayerCharacter(String name, int health, int level, int experience, Game game) {
+		super(name, health, game);
 		this.level = level;
 		this.experience = experience;
+		//this.game = game;
 	}
 
 	public void levelUp() {
@@ -68,6 +67,6 @@ public class PlayerCharacter extends Character {
 	}
 
 	public String toString() {
-		return String.format("Name: '%s' Health: %d Level: %d Experience: %d", name, health, level, experience);
+		return String.format("Name: '%s' Health: %d Level: %d Experience: %d Game: '%s'", name, health, level, experience, game.getName());
 	}
 }

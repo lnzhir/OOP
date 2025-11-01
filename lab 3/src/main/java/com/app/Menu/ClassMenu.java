@@ -1,4 +1,4 @@
-package com.app;
+package com.app.Menu;
 
 import com.app.DBProvider;
 import com.app.Menu.*;

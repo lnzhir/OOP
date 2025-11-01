@@ -13,7 +13,7 @@
 
       <!-- Assume test is the database name -->
       <property name="hibernate.connection.url">
-         jdbc:postgresql://localhost:4501/characters
+         jdbc:postgresql://localhost:4501/characters-games-publishers
       </property>
       <property name="hibernate.connection.username">
          postgres
@@ -22,10 +22,10 @@
          popbob
       </property>
 
-      <!--mapping class="com.app.PlayerCharacter"/>
-      <mapping class="com.app.NonPlayerCharacter"/-->
-      <!--mapping resource="PlayerCharacter.hbm.xml"/>
-      <mapping resource="NonPlayerCharacter.hbm.xml"/-->
+      <mapping class="com.app.PlayerCharacter"/>
+      <mapping class="com.app.NonPlayerCharacter"/>
+      <mapping class="com.app.Game"/>
+      <mapping class="com.app.Publisher"/>
 
    </session-factory>
 </hibernate-configuration>

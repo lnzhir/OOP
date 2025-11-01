@@ -1,9 +1,7 @@
 package com.app;
 
+import com.app.Game;
 import com.app.Character;
-import com.app.Level;
-
-import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,24 +22,16 @@ public class NonPlayerCharacter extends Character {
 	@Column(name = "attitude")
 	private int attitude = 0;
 
-	@ManyToMany(mappedBy = "NPCs")
-	/*@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(
-		name = "\"LevelNPCs\""
-		, joinColumns = @JoinColumn(name = "npc_id")
-		, inverseJoinColumns = @JoinColumn(name = "level_id")
-	)*/
-	private List<Level> levels = new ArrayList<Level>();
-
-
-	public NonPlayerCharacter(String name, int health) {
-		super(name, health);
+	public NonPlayerCharacter(String name, int health, Game game) {
+		super(name, health, game);
+		//this.game = game;
 	}
 
-	public NonPlayerCharacter(String name, int health, String role, int attitude) {
-		super(name, health);
+	public NonPlayerCharacter(String name, int health, String role, int attitude, Game game) {
+		super(name, health, game);
 		this.role = role;
 		this.attitude = attitude;
+		//this.game = game;
 	}
 
 	public void setAttitude(int attitude) {
@@ -65,6 +55,6 @@ public class NonPlayerCharacter extends Character {
 	}
 
 	public String toString() {
-		return String.format("Name: '%s' Health: %d Role: '%s' Attitude: '%s'", name, health, role, attitudeStr[attitude]);
+		return String.format("Name: '%s' Health: %d Role: '%s' Attitude: '%s' Game: '%s'", name, health, role, attitudeStr[attitude], game.getName());
 	}
 }

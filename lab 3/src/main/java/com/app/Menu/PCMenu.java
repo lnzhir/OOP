@@ -1,4 +1,4 @@
-package com.app;
+package com.app.Menu;
 
 import com.app.*;
 import com.app.Menu.*;
@@ -26,27 +26,49 @@ public class PCMenu extends ClassMenu {
 		System.out.print("Health: ");
 		int health = in.nextInt();
 
-		PlayerCharacter player = new PlayerCharacter(name, health);
-		DBProvider.persist(player);
+		Game game = GameMenu.inputGame();
+		if (game != null) {
+			PlayerCharacter player = new PlayerCharacter(name, health, game);
+			game.getPCs().add(player);
+			DBProvider.persist(player);
+		}
 
 		this.run();
 	}
 
-	@Option(ordinal = 2, key = '3', description = "Удалить запись")
-	public void delete() {
+	@Option(ordinal = 2, key = '3', description = "Изменить запись")
+	public void update() {
 		PlayerCharacter player = inputEntity(PlayerCharacter.class, "Пункт: ");
 
 		if (player != null) {
-			if (player.getLevels().size() == 0) {
-				DBProvider.remove(player);
-			} else {
-				System.out.println("Не удалено. Присутствует в одном (нескольких) из уровней");
-			}
+			Scanner in = new Scanner(System.in);
+			System.out.print("Name: ");
+			String name = in.nextLine();
+			System.out.print("Health: ");
+			int health = in.nextInt();
+			System.out.print("Level: ");
+			int level = in.nextInt();
+			System.out.print("Experience: ");
+			int experience = in.nextInt();
+
+			DBProvider.transact(() -> {
+				player.setName(name);
+				player.setHealth(health);
+				player.setLevel(level);
+				player.setExperience(experience);
+			});
 		}
+
 		this.run();
 	}
 
-	@Option(ordinal = 3, key = '4', description = "Назад")
+
+	@Option(ordinal = 3, key = '4', description = "Удалить запись")
+	public void delete() {
+		super.delete();
+	}
+
+	@Option(ordinal = 4, key = '5', description = "Назад")
 	public void back() {
 		super.back();
 	}

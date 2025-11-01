@@ -1,4 +1,4 @@
-package com.app;
+package com.app.Menu;
 
 
 import com.app.*;
@@ -12,7 +12,8 @@ import io.github.nickacpt.jmenu.annotations.Option;
 public class MainMenu extends JMenu {
 	private PCMenu pcMenu = new PCMenu(this);
 	private NPCMenu npcMenu = new NPCMenu(this);
-	private LevelMenu levelMenu = new LevelMenu(this);
+	private GameMenu gameMenu = new GameMenu(this);
+	private PublisherMenu publisherMenu = new PublisherMenu(this);
 
 	@Option(ordinal = 0, key = '1', description = "PlayerCharacters")
 	public void players() {
@@ -24,13 +25,18 @@ public class MainMenu extends JMenu {
 		npcMenu.run();
 	}
 
-	@Option(ordinal = 2, key = '3', description = "Levels")
-	public void levels() {
-		levelMenu.run();
+	@Option(ordinal = 2, key = '3', description = "Games")
+	public void games() {
+		gameMenu.run();
+	}
+
+	@Option(ordinal = 3, key = '4', description = "Publishers")
+	public void publishers() {
+		publisherMenu.run();
 	}
 	
 
-	@Option(ordinal = 3, key = '4', description = "Exit")
+	@Option(ordinal = 4, key = '5', description = "Выход")
 	@ExitOption
 	public void exit() {}
 }
